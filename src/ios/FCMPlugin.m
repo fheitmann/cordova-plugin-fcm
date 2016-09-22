@@ -43,15 +43,6 @@ static FCMPlugin *fcmPluginInstance;
         [AppDelegate init];
     }];
 }
-// Init //
-- (void) sendToNotificationSettings:(CDVInvokedUrlCommand *)command 
-{
-    NSLog(@"Init and show allow-notification dialog"); 
-    [self.commandDelegate runInBackground:^{ 
-    //UIApplication *application = [UIApplication sharedApplication];
-    //application.openURL(NSURL(string: UIApplicationOpenSettingsURLString)!) 
-    }];
-}
 
 // GET TOKEN //
 - (void) getToken:(CDVInvokedUrlCommand *)command 
