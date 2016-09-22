@@ -1,10 +1,3 @@
-//
-//  AppDelegate+FCMPlugin.m
-//  TestApp
-//
-//  Created by felipe on 12/06/16.
-//
-//
 #import "AppDelegate+FCMPlugin.h"
 #import "FCMPlugin.h"
 #import <objc/runtime.h>
@@ -24,26 +17,13 @@ static NSData *lastPush;
     method_exchangeImplementations(original, custom);
 }
 
+
 - (BOOL)application:(UIApplication *)application customDidFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     [self application:application customDidFinishLaunchingWithOptions:launchOptions];
 
-    NSLog(@"DidFinishLaunchingWithOptions");
-    // Register for remote notifications
+    NSLog(@"DidFinishLaunchingWithOptions"); 
 
-    // iOS 7.1 or earlier
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
-        UIRemoteNotificationType allNotificationTypes = (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge);
-        [application registerForRemoteNotificationTypes:allNotificationTypes];
-    } else {
-        // iOS 8 or later
-        UIUserNotificationType allNotificationTypes =
-        (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
-        UIUserNotificationSettings *settings =
-        [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
-    }
 
     // [START configure_firebase]
     [FIRApp configure];
@@ -148,4 +128,23 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
     return returnValue;
 }
 
++(void)init
+{
+    NSLog(@"init begin");
+    UIApplication *application = [UIApplication sharedApplication];
+    
+    // iOS 7.1 or earlier
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_7_1) {
+        UIRemoteNotificationType allNotificationTypes = (UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge);
+        [application registerForRemoteNotificationTypes:allNotificationTypes];
+    } else {
+        // iOS 8 or later
+        UIUserNotificationType allNotificationTypes =
+        (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+        UIUserNotificationSettings *settings =
+        [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+}
 @end
