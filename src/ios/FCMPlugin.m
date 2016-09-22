@@ -33,7 +33,24 @@ static FCMPlugin *fcmPluginInstance;
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     }];
-    
+}
+
+// Init //
+- (void) init:(CDVInvokedUrlCommand *)command 
+{
+    NSLog(@"Init and show allow-notification dialog"); 
+    [self.commandDelegate runInBackground:^{
+        [AppDelegate init];
+    }];
+}
+// Init //
+- (void) sendToNotificationSettings:(CDVInvokedUrlCommand *)command 
+{
+    NSLog(@"Init and show allow-notification dialog"); 
+    [self.commandDelegate runInBackground:^{ 
+    //UIApplication *application = [UIApplication sharedApplication];
+    //application.openURL(NSURL(string: UIApplicationOpenSettingsURLString)!) 
+    }];
 }
 
 // GET TOKEN //
@@ -64,7 +81,7 @@ static FCMPlugin *fcmPluginInstance;
 - (void) unsubscribeFromTopic:(CDVInvokedUrlCommand *)command 
 {
     NSString* topic = [command.arguments objectAtIndex:0];
-    NSLog(@"unsubscribe From Topic %@", topic);
+    NSLog(@"subscribe To Topic %@", topic);
     [self.commandDelegate runInBackground:^{
         if(topic != nil)[[FIRMessaging messaging] unsubscribeFromTopic:[NSString stringWithFormat:@"/topics/%@", topic]];
         CDVPluginResult* pluginResult = nil;
