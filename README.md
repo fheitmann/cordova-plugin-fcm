@@ -1,5 +1,5 @@
 *Forked
-Added option to choose when the "allow-notification"-prompt is shown. use FCMPlugin.init().
+Added option to choose when the "allow-notification"-prompt is shown on iOS. use FCMPlugin.init(). No changes to Android.
 ####
 # Google Firebase Cloud Messaging Cordova Push Plugin
 > Extremely easy plug&play push notification plugin for Cordova applications with Google Firebase FCM.
