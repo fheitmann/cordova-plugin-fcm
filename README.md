@@ -3,6 +3,8 @@
 
 >[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VF654BMGUPQTJ)
 
+Added option to choose when the "allow-notification"-prompt is shown. use FCMPlugin.init().
+
 #### Version 1.1.4 (22/07/2016)
 - Android and iOS tested.
 - Available sdk functions: getToken, subscribeToTopic, unsubscribeFromTopic and JavaScript notification data reception.
